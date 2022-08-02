@@ -5,6 +5,7 @@ from faker.providers import BaseProvider
 import csv
 import datetime
 from random import *
+from random import choice
 
 fake = Faker()
 
@@ -12,7 +13,7 @@ fake = Faker()
 class MyProvider(BaseProvider):
     __provider__ = "types"
     __provider__ = "description"
-    __provider__ = "fruit"
+    __provider__ = "location_description"
 
     def types(self):
         types = [
@@ -51,10 +52,10 @@ now_date_time = now.strftime("%d/%m/%Y %H:%M:%S %p")
 
 def datagenerate(records, headers):
 
-    with open("Crimes_2001_to_Present.csv", "wt") as csvFile:
+    with open("Crimes_2001_to_Present.csv", "a") as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=headers)
         # Only while creating a new file, we open in 'wt' mode and write header
-        writer.writeheader()
+        # writer.writeheader()
         for i in range(records):
             location_lat = str(fake.latitude())
             location_lon = str(fake.longitude())
